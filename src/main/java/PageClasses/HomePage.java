@@ -1,13 +1,13 @@
 package PageClasses;
 
 import Utilities.BaseClass;
+import Utilities.PropertiesRead;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class HomePage {
         return sourcePlaceHolder;
     }
     public HomePage source(){
-        driver.findElement(sourceElement).sendKeys("Hyderabad");
+        driver.findElement(sourceElement).sendKeys(PropertiesRead.propertyGet("sourcePlace"));
         BaseClass.wait.until(ExpectedConditions.visibilityOfElementLocated(getSourcePlaceHolder()));
         Actions actions= new Actions(driver);
         actions.keyDown(Keys.ENTER).perform();
@@ -44,7 +44,7 @@ public class HomePage {
         return selectingDestFromDropDown;
     }
     public HomePage destination(){
-        driver.findElement(destinationElement).sendKeys("Mumbai");
+        driver.findElement(destinationElement).sendKeys(PropertiesRead.propertyGet("destPlace"));
         BaseClass.wait.until(ExpectedConditions.visibilityOfElementLocated(selectingDestFromDropDown()));
         return this;
     }

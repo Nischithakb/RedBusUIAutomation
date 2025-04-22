@@ -13,6 +13,38 @@ Created reusable Page Object Model (POM) classes and encapsulated web element in
 Added a BaseClass to manage browser setup and teardown (ChromeDriver).
 Implemented TestNG assertions to validate source and destination results after search.
 
+### 📅 Day 2
+
+### Externalized Hardcoded Values:
+Created a config.properties file under a test-data folder.
+Stored values like url and browsername to avoid hardcoding in test classes.
+Implemented a PropertiesRead utility class to load and fetch values using Java Properties class.
+
+### Static Keyword Understanding:
+Learned that static variables/methods can be accessed without creating an object.
+Didn't create a variable for Properties object because its method was static and accessed using the class name.
+For driver and wait, declared them as instance/static variables since they are reused across test and page classes.
+
+### Driver Initialization:
+Refined the BaseClass to read browsername and url from the properties file.
+Used constructor to trigger driverSetup() method for browser initialization.
+
+### Screenshot Capture on Failure:
+
+Created a ScreenshotUtility class using the TakesScreenshot interface.
+Captured screenshot as a File and saved it to a defined destination path.
+Used Files.copy(sourceFile.toPath(), destinationFile.toPath()) for saving screenshots.
+
+### TestNG Listeners:
+Implemented ITestListener in a class named TestListener to listen to test events.
+Used onTestFailure() method to trigger screenshot capture for failed test cases.
+Important Note: Listener classes should be placed under src/test/java since they are test-specific utilities.
+
+### Listener Integration:
+
+Registered the listener using @Listeners(TestListener.class) in the test class.
+Passed driver and result.getName() to the screenshot method for dynamic naming.
+
 
 
 ## Tools & Technologies Used

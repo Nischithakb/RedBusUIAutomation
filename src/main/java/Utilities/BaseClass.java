@@ -6,19 +6,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Properties;
 
 public class BaseClass {
     public static WebDriver driver;
     public static WebDriverWait wait;
 
+
     public BaseClass(String driverName){
         driverSetup(driverName);
+
     }
     public void driverSetup(String drivername) {
-        if(drivername.equalsIgnoreCase("chrome")){
+        if(drivername.equalsIgnoreCase(PropertiesRead.propertyGet("browsername"))){
             driver = new ChromeDriver();
             driver.manage().window().maximize();
-            driver.get("https://www.redbus.in/");
+            driver.get(PropertiesRead.propertyGet("url"));
             wait=new WebDriverWait(driver, Duration.ofSeconds(10));
         }
 
